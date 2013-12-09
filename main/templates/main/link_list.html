@@ -16,8 +16,12 @@
             {# <span class="domain">({{ link.domain }})</span> #}<!--链接-->
         </h2>
         by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.profile }}</a>
-        {{ link.publish_date|timesince }} ago |
-        <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} comment{{ link.comments_count|pluralize }} </a>
+        {{ link.publish_date|timesince }} 之前 |
+        <a class="comments" href="{{ link.get_absolute_url }}#pl">{# {{ link.comments_count }} #}<span class="ds-thread-count" data-thread-key="link/{{link.id}}" data-count-type="comments"></span>{# {{ link.comments_count|pluralize }} #} </a>
+
+
+
+<!-- 多说js加载开始，一个页面只需要加载一次 获取评论数-->
     </div>
 </div>
 {% empty %}
@@ -25,5 +29,7 @@
 {% endfor %}
 
 {% pagination_for object_list "page" "pjax" %}  <!--ajax 的实现部分？-->
+
+{% include "include/duoshuopl.html" %}
 
 {% endblock %}

@@ -24,7 +24,7 @@ INSTALLED_APPS = (
     "mezzanine.conf",
     "mezzanine.core",
     "mezzanine.generic",
-    "mezzanine.accounts",
+    "mezzanine.accounts",  #需要微调啊,使用接口而不是自己侵入改
 )
 
 MIDDLEWARE_CLASSES = (["mezzanine.core.middleware.UpdateCacheMiddleware"] +

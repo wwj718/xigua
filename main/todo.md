@@ -1,0 +1,11 @@
+汉化
+
+pjax造成不刷新 include无法用 
+http://www.welefen.com/use-ajax-and-pushstate.html
+main造成的
+usepjax  通过为nav添加usepjax类 主体内容不用pjax
+
+duoshuou获取评论
+<div class="ds-thread" data-thread-key="文章在原站点中的id或其他唯一标识" data-title="您的文章标题" ></div>
+传递的时候
+http://dev.duoshuo.com/threads/5016427f77cf5fa30500000e

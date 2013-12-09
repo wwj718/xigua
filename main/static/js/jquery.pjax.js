@@ -49,7 +49,7 @@ $(function() {
             });
         };
 
-        $('a').live('click', function(event) {
+        $('.usepjax a').live('click', function(event) {
             var host = location.protocol + '//' + location.hostname
             if (this.href.substr('#') >= 0) {
                 return false;

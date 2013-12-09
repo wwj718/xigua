@@ -20,3 +20,14 @@ model class Link(Displayable, Ownable)
 
 #coding=utf-8
 
+
+base.html
+{% search_form %}
+来自后台 view  应该是mezzanine的功能  只要继承Displayable就有 Link继承了
+mezzanine的search看看  似乎要设置
+
+http://mezzanine.jupo.org/docs/search-engine.html?highlight=search
+{% search_form "main.Link" %}   nice job 完成
+
+http://food.hypertexthero.com/  的登录登方式很帅啊
+Uses Mozilla Persona for authentication  简易好用

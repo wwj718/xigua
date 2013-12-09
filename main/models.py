@@ -13,7 +13,7 @@ from mezzanine.generic.fields import RatingField, CommentsField
 
 class Link(Displayable, Ownable):
 
-    link = models.URLField()   #
+    link = models.URLField(blank=True)   #这个根本不需要，不要删除吧，免得麻烦，只要不让它出现就行,完成
     rating = RatingField()
     comments = CommentsField()
 

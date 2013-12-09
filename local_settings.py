@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 DEBUG = True
 
 SECRET_KEY = "jqx$20k4d^_c7zq9=m1dyuv-f_izs1r^s6pug=vdtwpq-b7o79"
@@ -21,3 +21,18 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS=['*']
+
+#SEARCH_MODEL_CHOICES="pages.Page main.Link"
+
+ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
+    "email",
+    "first_name",
+    "last_name",
+    'website',
+    'bio',
+)
+
+USE_I18N = True
+LANGUAGE_CODE = 'zh'
+
+#排除
