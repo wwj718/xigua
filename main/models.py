@@ -1,4 +1,4 @@
-
+#coding=utf-8
 from time import time
 from urlparse import urlparse
 
@@ -13,7 +13,7 @@ from mezzanine.generic.fields import RatingField, CommentsField
 
 class Link(Displayable, Ownable):
 
-    link = models.URLField()
+    link = models.URLField()   #
     rating = RatingField()
     comments = CommentsField()
 

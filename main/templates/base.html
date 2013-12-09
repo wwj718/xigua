@@ -47,12 +47,17 @@
     {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
     <ul class="nav">
         <li class="divider-vertical"></li>
-        {% url "link_list_latest" as link_list_latest %}
+        {% url "link_list_latest" as link_list_latest %}<!--最新链接  项目-->
+        {% url "link_list_best" as link_list_best %}<!--最佳建议 模仿comment_list_best-->
         {% url "comment_list_latest" as comment_list_latest %}
         {% url "comment_list_best" as comment_list_best %}
-        <li{% if request.path == link_list_latest %} class="active"{% endif %}><a href="{{ link_list_latest }}">Newest</a></li>
-        <li{% if request.path == comment_list_latest %} class="active"{% endif %}><a href="{{ comment_list_latest }}">Comments</a></li>
-        <li{% if request.path == comment_list_best %} class="active"{% endif %}><a href="{{ comment_list_best }}">Best</a></li>
+        <li{% if request.path == link_list_latest %} class="active"{% endif %}><a href="{{ link_list_latest }}">最新建议</a></li><!--最新项目（建议）-->
+        <li{% if request.path == link_list_best %} class="active"{% endif %}><a href="{{ link_list_best }}">最佳建议</a></li><!--最佳建议-->
+
+<!--        
+<li{% if request.path == comment_list_latest %} class="active"{% endif %}><a href="{{ comment_list_latest }}">最新评论</a></li>
+        <li{% if request.path == comment_list_best %} class="active"{% endif %}><a href="{{ comment_list_best }}">最佳评论</a></li>
+-->
     </ul>
     <div class="nav-collapse">
         <div class="pull-right">
@@ -90,11 +95,7 @@
 <footer>
 <div class="container">
     <p>
-        Made by <a href="http://twitter.com/stephen_mcd">Stephen McDonald</a>
-        <span class="separator">|</span>
-        <a href="https://github.com/stephenmcd/drum">Open Source</a>
-        <span class="separator">|</span>
-        {% trans "Powered by" %} <a href="http://mezzanine.jupo.org">Mezzanine</a>
+        power by wwj & ymj
     </p>
 </div>
 </footer>

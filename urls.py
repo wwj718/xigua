@@ -1,3 +1,4 @@
+#coding=utf-8
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
@@ -10,7 +11,7 @@ admin.autodiscover()
 
 urlpatterns = patterns("",
     ("^admin/", include(admin.site.urls)),
-    ("^", include("main.urls")),
+    ("^", include("main.urls")),  #优先,可覆盖
     ("^", include("mezzanine.urls")),
 )
 

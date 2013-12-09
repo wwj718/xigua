@@ -1,3 +1,5 @@
+#coding=utf-8
+
 
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
@@ -11,13 +13,19 @@ urlpatterns = patterns("",
         name="home"),
     url("^newest/$",
         LinkList.as_view(), {"by_score": False},
-        name="link_list_latest"),
+        name="link_list_latest"),   #按分数排序如此简单，有接口，不添加false就行
+    
+    url("^suggestions/best/$",
+        LinkList.as_view(), 
+        name="link_list_best"),
+
     url("^comments/$",
         CommentList.as_view(), {"by_score": False},
         name="comment_list_latest"),
     url("^best/$",
         CommentList.as_view(),
         name="comment_list_best"),
+
     url("^link/create/$",
         login_required(LinkCreate.as_view()),
         name="link_create"),

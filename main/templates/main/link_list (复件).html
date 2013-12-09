@@ -7,13 +7,13 @@
 
 {% block main %}
 
-{% for link in object_list %} <!--排序在这里控制-->
-<div class="link-item clearfix"> <!--每个条目-->
-    {% if not profile_user %}{% rating_for link %}{% endif %}<!--rating_for用来排序的-->
-    <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}"><!--小于0的话给出其他样式-->
+{% for link in object_list %}
+<div class="link-item clearfix">
+    {% if not profile_user %}{% rating_for link %}{% endif %}
+    <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
         <h2>
-            <a href="{{ link.get_absolute_url }}">{{ link.title }}</a>
-            {# <span class="domain">({{ link.domain }})</span> #}<!--链接-->
+            <a href="{{ link.link }}">{{ link.title }}</a>
+            <span class="domain">({{ link.domain }})</span>
         </h2>
         by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.profile }}</a>
         {{ link.publish_date|timesince }} ago |
@@ -24,6 +24,6 @@
 <p>{{ no_data }}</p>
 {% endfor %}
 
-{% pagination_for object_list "page" "pjax" %}  <!--ajax 的实现部分？-->
+{% pagination_for object_list "page" "pjax" %}
 
 {% endblock %}

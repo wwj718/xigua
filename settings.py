@@ -1,4 +1,4 @@
-
+#coding:utf-8
 from mezzanine.project_template.settings import *
 import os
 
@@ -32,13 +32,13 @@ MIDDLEWARE_CLASSES = (["mezzanine.core.middleware.UpdateCacheMiddleware"] +
                       ["mezzanine.core.middleware.FetchFromCacheMiddleware"])
 MIDDLEWARE_CLASSES.remove("mezzanine.pages.middleware.PageMiddleware")
 
-# Mezzanine
+# Mezzanine mezzanine部分
 AUTH_PROFILE_MODULE = "main.Profile"
-SITE_TITLE = "Drum"
+SITE_TITLE = "西瓜"  #站点名称
 RATINGS_RANGE = (-1, 1)
-RATINGS_ACCOUNT_REQUIRED = True
-COMMENTS_ACCOUNT_REQUIRED = True
-ACCOUNTS_PROFILE_VIEWS_ENABLED = True
+RATINGS_ACCOUNT_REQUIRED = True  #登录后可投票
+COMMENTS_ACCOUNT_REQUIRED = True  #登录后可评论
+ACCOUNTS_PROFILE_VIEWS_ENABLED = True  
 
 ADMIN_MENU_ORDER = (
     ("Content", ("main.Link", "pages.Page", "blog.BlogPost",
@@ -49,7 +49,7 @@ ADMIN_MENU_ORDER = (
 
 # Drum
 ALLOWED_DUPLICATE_LINK_HOURS = 24 * 7 * 3
-ITEMS_PER_PAGE = 20
+ITEMS_PER_PAGE = 20  #分页参数，每页显示
 
 try:
     from local_settings import *

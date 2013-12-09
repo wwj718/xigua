@@ -1,4 +1,4 @@
-
+#coding=utf-8
 from datetime import timedelta
 
 from django.contrib.auth.models import User
@@ -144,11 +144,13 @@ class CommentList(ScoreOrderingView):
     or by most recently created ("comments" main nav item, profile
     comments).
     """
+    #as view是哪个的函数  ，继承自哪里 只能是这里，来自这里from django.views.generic import ListView, CreateView, DetailView
+
 
     date_field = "submit_date"
     score_fields = ("rating_sum",)
 
-    def get_queryset(self):
+    def get_queryset(self):#这个是重载  ，覆盖原理的方法 返回要求的接口数据就行
         return ThreadedComment.objects.visible().select_related("user",
             "user__profile").prefetch_related("content_object")
 
@@ -156,7 +158,7 @@ class CommentList(ScoreOrderingView):
         if context["profile_user"]:
             return "Comments by %s" % context["profile_user"].profile
         elif context["by_score"]:
-            return "Best comments"
+            return "Best comments"  #这里就是高分排序的关键了
         else:
             return "Latest comments"
 
