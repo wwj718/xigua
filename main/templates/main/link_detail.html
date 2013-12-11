@@ -13,8 +13,9 @@
             <a href="{{ object.get_absolute_url }}">{{ object.title }}</a>
             {# <span class="domain">({{ link.domain }})</span> #}<!--链接-->
         </h2>
-        by <a class="profile" href="{% url "profile" object.user.username %}">{{ link.user.profile }}</a>
-        {{ link.publish_date|timesince }} 之前 
+        <span class="pull-right">{% include "include/baidushare.html" %}</span>
+        <blockquote>by <a  href="{% url "profile" object.user.username %}">{{ link.user.profile }}</a>
+        {{ link.publish_date|timesince }} 之前 </blockquote>
         
 
 
@@ -29,8 +30,15 @@
     <p class="description">{{ object.description }}</p>
     
 </div>
-
 <hr>
+  
+
+ 
+
+<h3><button class="btn btn-primary">伙委会</button>的答复：</h3>
+<hr>
+{% comments_for object %}
+
 {% include "include/duoshuo.html" %}
 
 {% endblock %}

@@ -25,7 +25,6 @@ ALLOWED_HOSTS=['*']
 #SEARCH_MODEL_CHOICES="pages.Page main.Link"
 
 ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
-    "email",
     "first_name",
     "last_name",
     'website',
@@ -36,3 +35,17 @@ USE_I18N = True
 LANGUAGE_CODE = 'zh'
 
 #排除
+
+
+
+#email
+EMAIL_HOST = 'smtp.qq.com' 
+EMAIL_PORT = 25
+EMAIL_HOST_USER='2230360562@qq.com'  
+EMAIL_HOST_PASSWORD='wwjtest'
+
+BLOG_USE_FEATURED_IMAGE = True 
+ACCOUNTS_ENABLED = True
+
+PAGES_MENU_SHOW_ALL = False
+

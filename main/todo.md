@@ -9,3 +9,6 @@ duoshuou获取评论
 <div class="ds-thread" data-thread-key="文章在原站点中的id或其他唯一标识" data-title="您的文章标题" ></div>
 传递的时候
 http://dev.duoshuo.com/threads/5016427f77cf5fa30500000e
+
+
+page  快速建立

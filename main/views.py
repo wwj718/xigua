@@ -13,7 +13,7 @@ from mezzanine.generic.models import ThreadedComment
 from mezzanine.utils.views import paginate
 
 from .models import Link
-from .utils import order_by_score
+from .utils import order_by_score  #返回queryset
 
 
 class UserFilterView(ListView):
@@ -37,8 +37,7 @@ class UserFilterView(ListView):
             qs = context["object_list"].filter(user=profile_user)
             context["object_list"] = qs
         context["profile_user"] = profile_user
-        context["no_data"] = ("Whoa, there's like, literally no data here, "
-                              "like seriously, I totally got nothin.")
+        context["no_data"] = ("暂无建议")
         return context
 
 
@@ -58,10 +57,19 @@ class ScoreOrderingView(UserFilterView):
         context = super(ScoreOrderingView, self).get_context_data(**kwargs)
         qs = context["object_list"]
         context["by_score"] = self.kwargs.get("by_score", True)
+        context["by_canteen"] = self.kwargs.get("by_canteen", False)
+        context["canteen"] = self.kwargs.get("canteen", 'other')
+
         if context["by_score"]:
-            qs = order_by_score(qs, self.score_fields, self.date_field)
+            qs = order_by_score(qs, self.score_fields, self.date_field)  #qs是queryset传递过去，返回queryset
         else:
             qs = qs.order_by("-" + self.date_field)
+
+        if context["by_canteen"]:
+            '''硬编码了，习惯不好，为了速度 dirty and quickly'''
+            qs = Link.objects.filter(canteen=context["canteen"])  #queryset
+
+
         context["object_list"] = paginate(qs, self.request.GET.get("page", 1),
             settings.ITEMS_PER_PAGE, settings.MAX_PAGING_LINKS)
         context["title"] = self.get_title(context)
@@ -92,9 +100,9 @@ class LinkList(LinkView, ScoreOrderingView):
         if context["by_score"]:
             return ""  # Homepage
         if context["profile_user"]:
-            return "Links by %s" % context["profile_user"].profile
+            return "建议 by %s" % context["profile_user"].profile
         else:
-            return "Newest"
+            return ""
 
 
 class LinkCreate(CreateView):
@@ -104,7 +112,7 @@ class LinkCreate(CreateView):
     so that we can provide our own descriptions.
     """
 
-    form_class = modelform_factory(Link, fields=("title", "link",
+    form_class = modelform_factory(Link, fields=("canteen","title",
                                                  "description"))
     model = Link
 

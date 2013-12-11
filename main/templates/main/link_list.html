@@ -6,6 +6,8 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block main %}
+{% include "include/nav.html" %}
+
 
 {% for link in object_list %} <!--排序在这里控制-->
 <div class="link-item clearfix"> <!--每个条目-->

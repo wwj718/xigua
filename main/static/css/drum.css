@@ -5,12 +5,12 @@
 .navbar a.btn {padding:3px 10px !important; margin:7px 3px;}
 .navbar-search .btn {display:none;}
 a.brand {
-    background:url('../img/drum-logo.png') no-repeat; background-position:5px 6px;
+    
     text-indent:13px; margin-left:-3px !important;
     font-family: 'Risque', cursive;
     font-size:28px !important;
-    padding:3px 20px !important;
-    text-decoration:none;
+/*    padding:3px 20px !important;
+*/    text-decoration:none;
     color:#fff !important;
 }
 @media (max-width: 600px) {
@@ -29,7 +29,7 @@ body {color:#666;}
 /* Headings */
 h1 {margin:0;}
 h1, h2 {font-size:24px;}
-h2 a:visited {color:rgb(156,188,156);}
+h2 a:visited {color:#259;}
 .domain {font-weight:normal; font-size:14px; color:#999;}
 
 /* Redundant Mezzanine bits */

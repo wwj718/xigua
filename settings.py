@@ -12,6 +12,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
 INSTALLED_APPS = (
     "main",
+    'onepage',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -25,6 +26,8 @@ INSTALLED_APPS = (
     "mezzanine.core",
     "mezzanine.generic",
     "mezzanine.accounts",  #需要微调啊,使用接口而不是自己侵入改
+
+
 )
 
 MIDDLEWARE_CLASSES = (["mezzanine.core.middleware.UpdateCacheMiddleware"] +
@@ -34,7 +37,7 @@ MIDDLEWARE_CLASSES.remove("mezzanine.pages.middleware.PageMiddleware")
 
 # Mezzanine mezzanine部分
 AUTH_PROFILE_MODULE = "main.Profile"
-SITE_TITLE = "西瓜"  #站点名称
+SITE_TITLE = "绿链"  #站点名称
 RATINGS_RANGE = (-1, 1)
 RATINGS_ACCOUNT_REQUIRED = True  #登录后可投票
 COMMENTS_ACCOUNT_REQUIRED = True  #登录后可评论
@@ -62,3 +65,4 @@ except ImportError:
     pass
 else:
     set_dynamic_settings(globals())
+

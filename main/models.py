@@ -12,7 +12,8 @@ from mezzanine.generic.fields import RatingField, CommentsField
 
 
 class Link(Displayable, Ownable):
-
+    c=(('yc','一餐厅'),('ec','二餐厅'),('sc','三餐厅'),('hc','回民餐厅'),('other','未分类'))
+    canteen=models.CharField(max_length=20,choices=c,default='other')
     link = models.URLField(blank=True)   #这个根本不需要，不要删除吧，免得麻烦，只要不让它出现就行,完成
     rating = RatingField()
     comments = CommentsField()

@@ -12,7 +12,10 @@ admin.autodiscover()
 urlpatterns = patterns("",
     ("^admin/", include(admin.site.urls)),
     ("^", include("main.urls")),  #优先,可覆盖
-    ("^", include("mezzanine.urls")),
+    ("^", include("mezzanine.urls")),  #page
+    ("^onepage/", include("onepage.urls")),  #page
+
+
 )
 
 # Adds ``STATIC_URL`` to the context.

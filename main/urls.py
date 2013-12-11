@@ -19,6 +19,11 @@ urlpatterns = patterns("",
         LinkList.as_view(), 
         name="link_list_best"),
 
+#按餐厅排序
+    url("^canteen/(?P<canteen>.*)/$", #可选canteen/sc 参考models 
+        LinkList.as_view(), {"by_canteen":  True},
+        name="link_list_canteen"),
+
     url("^comments/$",
         CommentList.as_view(), {"by_score": False},
         name="comment_list_latest"),
