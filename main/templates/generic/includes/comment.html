@@ -1,6 +1,10 @@
 {% load i18n mezzanine_tags comment_tags rating_tags future %}
-
-<ul class="unstyled comment-thread">
+<!--本页是评论细节 只有具体内容-->
+    <div class="row">  
+    <div ><h3 style="border-top-width: 0px;" class="alert-success text-center">伙委会的答复</h3></div>
+    </div>
+<ul class="row" id="relay" class="unstyled comment-thread">
+    
     {% for comment in comments_for_thread %}
     <li id="comment-{{ comment.id }}">
     {% if not comment.is_removed and comment.is_public %}
@@ -9,7 +13,7 @@
             <a href="{% url "profile" comment.user.username %}">{{ comment.user.profile }}</a>
             {{ comment.submit_date|timesince }} 之前
         </p>
-        <p class="comment-comment">{{ comment.comment|comment_filter }}</p>
+        <p class="comment-comment">{{ comment.comment|comment_filter }}</p>  <!--评论内容-->
 {% comment %}
         <div class="comment-links">
 
@@ -50,6 +54,7 @@
 {%endif%}
     </li>
     {% endfor %}
+
     {% if no_comments %}
     <li>暂无答复</li>
     {% endif %}

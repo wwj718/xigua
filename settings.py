@@ -37,8 +37,8 @@ MIDDLEWARE_CLASSES.remove("mezzanine.pages.middleware.PageMiddleware")
 
 # Mezzanine mezzanine部分
 AUTH_PROFILE_MODULE = "main.Profile"
-SITE_TITLE = "绿链"  #站点名称
-RATINGS_RANGE = (-1, 1)
+SITE_TITLE = "  GreenLine"  #站点名称
+RATINGS_RANGE = (0, 1)
 RATINGS_ACCOUNT_REQUIRED = True  #登录后可投票
 COMMENTS_ACCOUNT_REQUIRED = True  #登录后可评论
 ACCOUNTS_PROFILE_VIEWS_ENABLED = True  

@@ -7,7 +7,7 @@ from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
 from django.views.generic import ListView, CreateView, DetailView
-
+#使用了通用视图  注意传递模板
 from mezzanine.conf import settings
 from mezzanine.generic.models import ThreadedComment
 from mezzanine.utils.views import paginate
@@ -59,16 +59,52 @@ class ScoreOrderingView(UserFilterView):
         context["by_score"] = self.kwargs.get("by_score", True)
         context["by_canteen"] = self.kwargs.get("by_canteen", False)
         context["canteen"] = self.kwargs.get("canteen", 'other')
+        context["num"] = self.kwargs.get('num',0)  #0其实是用来作为false用
+        context["solved"] = self.kwargs.get('solved',False)  #0其实是用来作为false用
+
+
+            
 
         if context["by_score"]:
+            '''全部按分数'''
+            #默认所有数量
             qs = order_by_score(qs, self.score_fields, self.date_field)  #qs是queryset传递过去，返回queryset
+            if context["num"]:
+                #控制数量，通过url或者查询关键字 get 
+                num=int(context["num"])
+                qs=qs[0:num]
+
         else:
+            #按时间，默认所有
             qs = qs.order_by("-" + self.date_field)
+            #时间,控制数量
+            if context["num"]:
+                #控制数量，通过url或者查询关键字 get 
+                num=int(context["num"])
+                qs=qs[0:num]           
+        #按餐厅
+        if context["by_canteen"] :
 
-        if context["by_canteen"]:
-            '''硬编码了，习惯不好，为了速度 dirty and quickly'''
+            '''硬编码了，习惯不好，为了速度 dirty and quickly 核心逻辑：把if 当作开关'''
             qs = Link.objects.filter(canteen=context["canteen"])  #queryset
+            if context["by_score"]:
+                '''餐厅内部按分数'''
+                qs = order_by_score(qs, self.score_fields, self.date_field)
+                #餐厅，热度，数量
+                if context["num"]:
+                    num=int(context["num"])
+                    qs=qs[0:num]            
+            else:
+                qs = qs.order_by("-" + self.date_field)
+                #餐厅，时间，数量
+                if context["num"]:
+                    num=int(context["num"])
+                    qs=qs[0:num]
 
+
+        if context["solved"]:  #最后一步过滤,queryset是list,当作list来过滤
+            #qs=qs.objects.filter(solved=True)
+            qs = [item for item in qs if item.solved == False]
 
         context["object_list"] = paginate(qs, self.request.GET.get("page", 1),
             settings.ITEMS_PER_PAGE, settings.MAX_PAGING_LINKS)
@@ -91,10 +127,11 @@ class LinkList(LinkView, ScoreOrderingView):
     a single user (links from user's profile page). Links can be
     order by score (homepage, profile links) or by most recently
     created ("newest" main nav item).
+    模板怎么传递
     """
 
     date_field = "publish_date"
-    score_fields = ("rating_sum", "comments_count")
+    score_fields = ("rating_sum")# 统计分数 是个魔术方法 ("rating_sum", "comments_count")
 
     def get_title(self, context):
         if context["by_score"]:
@@ -117,12 +154,15 @@ class LinkCreate(CreateView):
     model = Link
 
     def form_valid(self, form):
+        '''
         hours = getattr(settings, "ALLOWED_DUPLICATE_LINK_HOURS", None)
+        
         if hours:
             lookup = {
                 "link": form.instance.link,
                 "publish_date__gt": now() - timedelta(hours=hours),
             }
+            
             try:
                 link = Link.objects.get(**lookup)
             except Link.DoesNotExist:
@@ -130,9 +170,10 @@ class LinkCreate(CreateView):
             else:
                 error(self.request, "Link exists")
                 return redirect(link)
+            '''
         form.instance.user = self.request.user
         form.instance.gen_description = False
-        info(self.request, "Link created")
+        info(self.request, "建议 created")
         return super(LinkCreate, self).form_valid(form)
 
 

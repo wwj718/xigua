@@ -109,3 +109,20 @@ h1, .link-item, .comment-item, .comment-links {border-bottom-width:5px;}
 
 .comment-item {color:#aaa;}
 .comment-item .comment {color:#666;}
+
+
+
+#suggestion,.comment-comment{
+
+    font-size: 22px;
+}
+
+.breadcrumb{
+    margin-top: 0px;
+}
+
+#relay{
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #eeeeee;
+}

@@ -7,9 +7,9 @@ from .models import Link
 class LinkAdmin(DisplayableAdmin):
 #控制后台
     list_display = ("id",'canteen', "title",  "publish_date",
-                    "user", "comments_count", "rating_sum")
+                     "rating_sum",'solved')
     list_display_links = ("id",)
-    list_editable = ("title",'canteen')
+    list_editable = ("title",'canteen','solved')
     list_filter = ("status", "user__username")
     ordering = ("-publish_date",)
 
