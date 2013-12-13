@@ -59,3 +59,13 @@ border-color: #111111;}
 
 .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
 width: 880px;}  /*导航条宽度*/
+
+
+#content{
+	background-color: rgb(246,246,246);
+}
+
+/*隐藏百度推广*/
+.footer a img {
+	visibility: hidden;
+}

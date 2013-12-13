@@ -75,9 +75,9 @@
 <h1>{% block title %}{% endblock %}</h1>
 </div>
 
-<div class="container main">
+<div id="content" class="container main">
 <div class="row">
-    <div class="span8 offset1">{% block main %}{% endblock %}</div>
+    <div  class="span8 offset1">{% block main %}{% endblock %}</div>
     <div id="right_nav" class="span3 ">{% include "include/right_nav.html" %}</div>
 </div>
 </div>
@@ -85,6 +85,7 @@
 <footer class="footer ">
 <div >
     <p>power by <a target="blank" href="http://wwj718.github.com">wwj</a> & <a href="#">ymj</a></p>
+    {% include "include/baidufenxi.html" %}
 </div>
 </footer>
 
