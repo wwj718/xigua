@@ -1,0 +1,9 @@
+<uwsgi>
+    <socket>:7001</socket>
+    <processes>4</processes>
+    <chdir>/home/wwj/xigua/xigua/</chdir>
+    <module>wsgi</module>
+    <daemonize>uwsgi.log</daemonize>
+    <virtualenv>/home/wwj/xigua/djangoforxigua/</virtualenv>
+</uwsgi>
+
